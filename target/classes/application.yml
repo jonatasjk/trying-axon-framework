@@ -4,9 +4,45 @@ spring:
   data:
     mongodb:
       uri: mongodb://localhost:27017/kyc_db
+  kafka:
+    bootstrap-servers: localhost:9092
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+      acks: all
+      retries: 3
+      properties:
+        max.block.ms: 30000
+        request.timeout.ms: 30000
+        delivery.timeout.ms: 60000
+        linger.ms: 10
+        batch.size: 16384
+        compression.type: snappy
+    consumer:
+      group-id: kyc-group
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      auto-offset-reset: earliest
+      enable-auto-commit: false
+      properties:
+        isolation.level: read_committed
+        spring.json.trusted.packages: '*'
+    properties:
+      spring:
+        json:
+          trusted:
+            packages: '*'
 
 server:
   port: 8080
+
+logging:
+  level:
+    root: INFO
+    com.jonatask.kyc: DEBUG
+    org.axonframework: INFO
+    org.apache.kafka: WARN
+    org.springframework.kafka: WARN
 
 axon:
   serializer:
@@ -16,8 +52,31 @@ axon:
   axonserver:
     servers: localhost:8124
     enabled: true
+    command:
+      load-factor: 100
+    query:
+      load-factor: 100
   eventhandling:
     processors:
       KycCreationSaga:
         mode: tracking
-
+        source: eventStore
+        batch-size: 100
+        thread-count: 1
+        token-claim-interval: 5000
+  command:
+    timeout: 120000ms # 2 minutes
+  kafka:
+    client-id: kyc-client
+    default-topic: kyc-events
+    consumer:
+      event-processor-mode: tracking
+      bootstrap-servers: localhost:9092
+      group-id: axon-kyc-consumer
+      auto-offset-reset: earliest
+      enable-auto-commit: false
+      poll-timeout: 1000
+      properties:
+        isolation.level: read_committed
+    fetcher:
+      poll-timeout: 1000

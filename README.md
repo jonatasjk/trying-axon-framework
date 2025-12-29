@@ -5,21 +5,17 @@ This is a draft of KYC (Know Your Customer) application built using:
 - CQRS
 - Event Sourcing
 - Saga patterns
-- Quarqus
 - MongoDB
 - Kafka
-- Auth0
 
 ## Prerequisites
-
-- Java 21 or higher
+- Java 23 or higher
 - Docker and Docker Compose
 - Maven
 
 ## Setup Instructions
 
 ### 1. Start Infrastructure Services
-
 Start Axon Server and MongoDB using Docker Compose:
 
 ```bash
@@ -31,19 +27,21 @@ This will start:
 - **MongoDB** on port 27017
 
 ### 2. Access Axon Server Dashboard
-
 Open your browser and navigate to:
 ```
 http://localhost:8024
 ```
 
-### 3. Build the Application
+### 3. Make sure Kafka is running
+Configure the url and port in the application.yml if needed.
+
+### 4. Build the Application
 
 ```bash
 ./mvnw clean install
 ```
 
-### 4. Run the Application
+### 5. Run the Application
 
 ```bash
 ./mvnw spring-boot:run
@@ -54,36 +52,12 @@ The application will start on port **8080**.
 ## Configuration
 
 ### application.yml
+Configure Axon Server, MongoDB, and Kafka settings in `src/main/resources/application.yml` if needed.
 
-```yaml
-spring:
-  application:
-    name: kyc
-  data:
-    mongodb:
-      uri: mongodb://localhost:27017/kyc_db
-
-server:
-  port: 8080
-
-axon:
-  serializer:
-    general: jackson
-    events: jackson
-    messages: jackson
-  axonserver:
-    servers: localhost:8124
-    enabled: true
-  eventhandling:
-    processors:
-      kyc-processor:
-        mode: tracking
-```
 
 ## Troubleshooting
 
 ### Cannot connect to Axon Server
-
 Make sure Axon Server is running:
 ```bash
 docker-compose ps
@@ -102,7 +76,6 @@ docker exec -it kyc-mongodb mongosh
 ```
 
 ### View Axon Server Events
-
 1. Open http://localhost:8024
 2. Navigate to "Search" tab
 3. View all events for your aggregate
@@ -148,7 +121,7 @@ KycProjection saves a new KycView to MongoDB when a KycCreatedEvent is handled.
 - Purpose: Listens to events (e.g., KycCreatedEvent) and updates a materialized view (KycView) for fast querying.
 - Persistence: Stores the current state in a database (e.g., MongoDB) for efficient reads.
 
-## License
 
+## License
 This project is for training purposes. Written by Jônatas Kirsch.
 
