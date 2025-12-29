@@ -25,6 +25,7 @@ public class KycAggregate {
             new KycCreatedEvent(
                 cmd.kycId(),
                 cmd.customerId(),
+                cmd.documentType(),
                 cmd.documentNumber()
             )
         );

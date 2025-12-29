@@ -36,6 +36,7 @@ class KycCommandControllerTest {
         String requestBody = """
                 {
                     "customerId": "81e42ea8-9f11-46ec-977b-4aacf50e7ce5",
+                    "documentType: "CPF",
                     "documentNumber": "09876543210"
                 }
                 """;

@@ -22,6 +22,7 @@ public class KycProjection {
         repo.save(new KycView(
             event.kycId(),
             event.customerId(),
+            event.documentType(),
             EKycStatus.PENDING
         ));
     }

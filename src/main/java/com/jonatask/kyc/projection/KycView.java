@@ -1,5 +1,6 @@
 package com.jonatask.kyc.projection;
 
+import com.jonatask.kyc.domain.enums.EDocumentType;
 import com.jonatask.kyc.domain.enums.EKycStatus;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -14,6 +15,7 @@ public class KycView {
     @Id
     private String kycId;
     private String customerId;
+    private EDocumentType documentType;
     private EKycStatus status;
 }
 
