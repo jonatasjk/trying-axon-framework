@@ -1,0 +1,144 @@
+{
+  "info": {
+    "name": "KYC Application API",
+    "description": "Collection for testing KYC Application with Axon Framework",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Submit KYC - Valid CPF",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"userId\": \"550e8400-e29b-41d4-a716-446655440000\",\n  \"documentNumber\": \"12345678901\",\n  \"documentType\": \"CPF\"\n}"
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/kyc",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["api", "kyc"]
+        }
+      }
+    },
+    {
+      "name": "Submit KYC - Invalid CPF",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"userId\": \"550e8400-e29b-41d4-a716-446655440001\",\n  \"documentNumber\": \"123\",\n  \"documentType\": \"CPF\"\n}"
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/kyc",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["api", "kyc"]
+        }
+      }
+    },
+    {
+      "name": "Submit KYC - Valid CNPJ",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"userId\": \"550e8400-e29b-41d4-a716-446655440002\",\n  \"documentNumber\": \"12345678000190\",\n  \"documentType\": \"CNPJ\"\n}"
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/kyc",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["api", "kyc"]
+        }
+      }
+    },
+    {
+      "name": "Submit KYC - Valid Passport",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"userId\": \"550e8400-e29b-41d4-a716-446655440003\",\n  \"documentNumber\": \"AB123456\",\n  \"documentType\": \"PASSPORT\"\n}"
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/kyc",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["api", "kyc"]
+        }
+      }
+    },
+    {
+      "name": "Get KYC by ID",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/api/kyc/{{kycId}}",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["api", "kyc", "{{kycId}}"]
+        }
+      }
+    },
+    {
+      "name": "Get All KYC Records",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/api/kyc",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["api", "kyc"]
+        }
+      }
+    },
+    {
+      "name": "Get KYC by User ID",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/api/kyc/user/550e8400-e29b-41d4-a716-446655440000",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["api", "kyc", "user", "550e8400-e29b-41d4-a716-446655440000"]
+        }
+      }
+    }
+  ]
+}
+

@@ -1,0 +1,23 @@
+spring:
+  application:
+    name: kyc
+  data:
+    mongodb:
+      uri: mongodb://localhost:27017/kyc_db
+
+server:
+  port: 8080
+
+axon:
+  serializer:
+    general: jackson
+    events: jackson
+    messages: jackson
+  axonserver:
+    servers: localhost:8124
+    enabled: true
+  eventhandling:
+    processors:
+      kyc-processor:
+        mode: tracking
+

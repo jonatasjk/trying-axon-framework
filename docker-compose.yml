@@ -1,0 +1,33 @@
+version: '3.3'
+services:
+  axonserver-1:
+    image: docker.axoniq.io/axoniq/axonserver:latest
+    pull_policy: always
+    hostname: axonserver-1
+    environment:
+      - axoniq_console_authentication=${AXONIQ_CONSOLE_AUTHENTICATION}
+    ports:
+      - '8024:8024'
+      - '8124:8124'
+      - '8224:8224'
+    networks:
+      - axon-server
+
+  mongodb:
+    image: mongo:latest
+    container_name: kyc-mongodb
+    ports:
+      - '27017:27017'
+    environment:
+      - MONGO_INITDB_DATABASE=kyc_db
+    volumes:
+      - mongodb-data:/data/db
+    networks:
+      - axon-server
+
+networks:
+  axon-server:
+
+volumes:
+  mongodb-data:
+
