@@ -107,6 +107,22 @@ docker exec -it kyc-mongodb mongosh
 2. Navigate to "Search" tab
 3. View all events for your aggregate
 
+
+## Decisions reasoning
+
+### ID as a String instead of UUID
+If used UUID:
+- Jackson serializes it as a string anyway
+- But Java expects it as a UUID on deserialization
+- Any mismatch = deserialization failure
+
+With String:
+- JSON -> String (always safe)
+- Kafka -> String
+- Mongo -> String
+- No custom serializers needed
+
+
 ## License
 
 This project is for training purposes. Written by Jônatas Kirsch.
