@@ -1,4 +1,6 @@
 package com.jonatask.kyc.dto;
 
-public class CreateKycRequest {
-}
+public record CreateKycRequest(
+    String customerId,
+    String documentNumber
+) {}
