@@ -1,7 +1,6 @@
-package com.jonatask.kyc.controller;
+package com.jonatask.kyc.command;
 
-import com.jonatask.kyc.api.KycCommandController;
-import com.jonatask.kyc.command.CreateKycCommand;
+import com.jonatask.kyc.command.api.KycCommandController;
 import org.axonframework.commandhandling.gateway.CommandGateway;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +20,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @WebMvcTest(KycCommandController.class)
-class KycCommandControllerTest {
+class KycCreateKycCommandTest {
 
     @Autowired
     private MockMvc mockMvc;

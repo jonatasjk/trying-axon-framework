@@ -1,7 +1,7 @@
-package com.jonatask.kyc.api;
+package com.jonatask.kyc.query.api;
 
-import com.jonatask.kyc.projection.KycView;
-import com.jonatask.kyc.repository.KycViewRepository;
+import com.jonatask.kyc.query.projection.KycView;
+import com.jonatask.kyc.query.repository.KycViewRepository;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;

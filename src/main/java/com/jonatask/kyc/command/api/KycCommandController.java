@@ -1,9 +1,8 @@
-package com.jonatask.kyc.api;
+package com.jonatask.kyc.command.api;
 
 import com.jonatask.kyc.command.CreateKycCommand;
-import com.jonatask.kyc.domain.enums.EDocumentType;
-import com.jonatask.kyc.dto.CreateKycRequest;
-import com.jonatask.kyc.dto.CreateKycResponse;
+import com.jonatask.kyc.command.api.dto.CreateKycRequest;
+import com.jonatask.kyc.query.api.dto.CreateKycResponse;
 import jakarta.validation.Valid;
 import org.axonframework.commandhandling.gateway.CommandGateway;
 import org.springframework.http.HttpStatus;

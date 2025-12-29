@@ -1,6 +1,6 @@
-package com.jonatask.kyc.repository;
+package com.jonatask.kyc.query.repository;
 
-import com.jonatask.kyc.projection.KycView;
+import com.jonatask.kyc.query.projection.KycView;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 

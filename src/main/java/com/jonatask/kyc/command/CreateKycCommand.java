@@ -1,6 +1,6 @@
 package com.jonatask.kyc.command;
 
-import com.jonatask.kyc.domain.enums.EDocumentType;
+import com.jonatask.kyc.command.aggregate.enums.EDocumentType;
 import org.axonframework.modelling.command.TargetAggregateIdentifier;
 
 public record CreateKycCommand (

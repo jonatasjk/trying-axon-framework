@@ -1,7 +1,7 @@
-package com.jonatask.kyc.projection;
+package com.jonatask.kyc.query.projection;
 
-import com.jonatask.kyc.domain.enums.EDocumentType;
-import com.jonatask.kyc.domain.enums.EKycStatus;
+import com.jonatask.kyc.command.aggregate.enums.EDocumentType;
+import com.jonatask.kyc.command.aggregate.enums.EKycStatus;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import org.springframework.data.annotation.Id;

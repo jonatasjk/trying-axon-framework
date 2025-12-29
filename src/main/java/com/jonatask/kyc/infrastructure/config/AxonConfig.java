@@ -1,4 +1,4 @@
-package com.jonatask.kyc.config;
+package com.jonatask.kyc.infrastructure.config;
 
 import org.springframework.context.annotation.Configuration;
 

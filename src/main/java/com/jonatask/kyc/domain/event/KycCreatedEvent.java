@@ -1,6 +1,6 @@
-package com.jonatask.kyc.event;
+package com.jonatask.kyc.domain.event;
 
-import com.jonatask.kyc.domain.enums.EDocumentType;
+import com.jonatask.kyc.command.aggregate.enums.EDocumentType;
 
 public record KycCreatedEvent(
     String kycId,

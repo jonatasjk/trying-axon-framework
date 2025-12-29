@@ -1,4 +1,4 @@
-package com.jonatask.kyc.config;
+package com.jonatask.kyc.infrastructure.config;
 
 import com.fasterxml.jackson.databind.exc.InvalidFormatException;
 import org.springframework.http.HttpStatus;

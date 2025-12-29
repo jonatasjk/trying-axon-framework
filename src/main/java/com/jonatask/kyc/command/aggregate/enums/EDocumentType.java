@@ -1,4 +1,4 @@
-package com.jonatask.kyc.domain.enums;
+package com.jonatask.kyc.command.aggregate.enums;
 
 public enum EDocumentType {
     CPF,

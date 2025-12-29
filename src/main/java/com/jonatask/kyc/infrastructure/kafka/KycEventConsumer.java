@@ -1,6 +1,6 @@
 package com.jonatask.kyc.infrastructure.kafka;
 
-import com.jonatask.kyc.event.KycApprovedEvent;
+import com.jonatask.kyc.domain.event.KycApprovedEvent;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.kafka.support.KafkaHeaders;
