@@ -18,6 +18,6 @@ axon:
     enabled: true
   eventhandling:
     processors:
-      kyc-processor:
+      KycCreationSaga:
         mode: tracking
 
