@@ -23,7 +23,7 @@
 		<mongodb.version>5.5.1</mongodb.version>
 		<maven.surefire.plugin.version>3.5.4</maven.surefire.plugin.version>
 		<maven.failsafe.plugin.version>3.5.4</maven.failsafe.plugin.version>
-		<jacoco.maven.plugin>0.8.11</jacoco.maven.plugin>
+		<jacoco.maven.plugin>0.8.14</jacoco.maven.plugin>
 	</properties>
 
 	<dependencyManagement>
