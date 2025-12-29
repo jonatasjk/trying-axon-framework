@@ -1,9 +1,9 @@
 package com.jonatask.kyc.saga;
 
 import com.jonatask.kyc.client.ExternalKycClient;
-import com.jonatask.kyc.event.KycCreatedEvent;
-import com.jonatask.kyc.event.KycApprovedEvent;
-import com.jonatask.kyc.event.KycRejectedEvent;
+import com.jonatask.kyc.domain.event.KycCreatedEvent;
+import com.jonatask.kyc.domain.event.KycApprovedEvent;
+import com.jonatask.kyc.domain.event.KycRejectedEvent;
 import org.axonframework.commandhandling.gateway.CommandGateway;
 import org.axonframework.modelling.saga.EndSaga;
 import org.axonframework.modelling.saga.SagaEventHandler;

@@ -2,9 +2,9 @@ package com.jonatask.kyc.infrastructure.kafka;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.jonatask.kyc.event.KycApprovedEvent;
-import com.jonatask.kyc.event.KycCreatedEvent;
-import com.jonatask.kyc.event.KycRejectedEvent;
+import com.jonatask.kyc.domain.event.KycApprovedEvent;
+import com.jonatask.kyc.domain.event.KycCreatedEvent;
+import com.jonatask.kyc.domain.event.KycRejectedEvent;
 import lombok.extern.slf4j.Slf4j;
 import org.axonframework.eventhandling.EventHandler;
 import org.springframework.kafka.core.KafkaTemplate;

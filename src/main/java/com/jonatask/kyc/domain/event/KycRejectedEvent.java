@@ -1,4 +1,4 @@
-package com.jonatask.kyc.event;
+package com.jonatask.kyc.domain.event;
 
 public record KycRejectedEvent(
     String kycId

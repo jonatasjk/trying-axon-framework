@@ -1,8 +1,8 @@
-package com.jonatask.kyc.domain;
+package com.jonatask.kyc.command.aggregate;
 
 import com.jonatask.kyc.command.CreateKycCommand;
-import com.jonatask.kyc.domain.enums.EKycStatus;
-import com.jonatask.kyc.event.KycCreatedEvent;
+import com.jonatask.kyc.command.aggregate.enums.EKycStatus;
+import com.jonatask.kyc.domain.event.KycCreatedEvent;
 import org.axonframework.commandhandling.CommandHandler;
 import org.axonframework.eventsourcing.EventSourcingHandler;
 import org.axonframework.modelling.command.AggregateIdentifier;

@@ -1,10 +1,10 @@
-package com.jonatask.kyc.projection;
+package com.jonatask.kyc.query.projection;
 
-import com.jonatask.kyc.domain.enums.EKycStatus;
-import com.jonatask.kyc.event.KycApprovedEvent;
-import com.jonatask.kyc.event.KycCreatedEvent;
-import com.jonatask.kyc.event.KycRejectedEvent;
-import com.jonatask.kyc.repository.KycViewRepository;
+import com.jonatask.kyc.command.aggregate.enums.EKycStatus;
+import com.jonatask.kyc.domain.event.KycApprovedEvent;
+import com.jonatask.kyc.domain.event.KycCreatedEvent;
+import com.jonatask.kyc.domain.event.KycRejectedEvent;
+import com.jonatask.kyc.query.repository.KycViewRepository;
 import org.axonframework.eventhandling.EventHandler;
 import org.springframework.stereotype.Component;
 

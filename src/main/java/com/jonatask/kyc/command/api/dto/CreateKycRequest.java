@@ -1,6 +1,6 @@
-package com.jonatask.kyc.dto;
+package com.jonatask.kyc.command.api.dto;
 
-import com.jonatask.kyc.domain.enums.EDocumentType;
+import com.jonatask.kyc.command.aggregate.enums.EDocumentType;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
