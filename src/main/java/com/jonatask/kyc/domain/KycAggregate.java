@@ -15,7 +15,7 @@ public class KycAggregate {
     @AggregateIdentifier
     private String kycId;
 
-    private String status;
+    private EKycStatus status;
 
     protected KycAggregate() {}
 
@@ -33,7 +33,7 @@ public class KycAggregate {
     @EventSourcingHandler
     public void on(KycCreatedEvent event) {
         this.kycId = event.kycId();
-        this.status = EKycStatus.PENDING.name();
+        this.status = EKycStatus.PENDING;
     }
 }
 

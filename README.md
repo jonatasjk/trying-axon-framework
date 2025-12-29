@@ -110,6 +110,13 @@ docker exec -it kyc-mongodb mongosh
 
 ## Decisions reasoning
 
+### Security
+Skipped security for now so it's quick to run and test this sample repo.
+
+### ExternalKycClient
+This is a mock client simulating an external KYC provider.
+In a real-world application, this would be replaced with actual API calls to a third-party KYC service.
+
 ### ID as a String instead of UUID
 If used UUID:
 - Jackson serializes it as a string anyway
@@ -122,12 +129,24 @@ With String:
 - Mongo -> String
 - No custom serializers needed
 
-### Why KycCreatedEvent is a record?
+### Events are records - not classes
 Because an event describes something that already happened:
 - It must never change 
 - It has no behavior 
 - It is append-only
 
+### KycAggregate
+KycAggregate applies the KycCreatedEvent and sets the status to PENDING.
+- Command side: Represents the write model.
+- Purpose: Handles commands (e.g., CreateKycCommand) and enforces business rules.
+- Event Sourcing: Stores state changes as events (e.g., KycCreatedEvent) instead of persisting the current state.
+- Lifecycle: Rehydrates its state by replaying events from the event store.
+
+### KycProjection
+KycProjection saves a new KycView to MongoDB when a KycCreatedEvent is handled.
+- Query side: Represents the read model.
+- Purpose: Listens to events (e.g., KycCreatedEvent) and updates a materialized view (KycView) for fast querying.
+- Persistence: Stores the current state in a database (e.g., MongoDB) for efficient reads.
 
 ## License
 
