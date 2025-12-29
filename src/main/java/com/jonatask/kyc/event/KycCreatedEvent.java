@@ -1,4 +1,7 @@
 package com.jonatask.kyc.event;
 
-public class KycCreatedEvent {
-}
+public record KycCreatedEvent(
+    String kycId,
+    String customerId,
+    String documentNumber
+) {}

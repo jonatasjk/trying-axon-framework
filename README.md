@@ -122,6 +122,12 @@ With String:
 - Mongo -> String
 - No custom serializers needed
 
+### Why KycCreatedEvent is a record?
+Because an event describes something that already happened:
+- It must never change 
+- It has no behavior 
+- It is append-only
+
 
 ## License
 
