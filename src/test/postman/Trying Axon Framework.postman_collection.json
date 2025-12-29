@@ -1,0 +1,86 @@
+{
+	"info": {
+		"_postman_id": "91e8da34-98e6-4d2e-973c-1299f93c4f62",
+		"name": "Trying Axon Framework",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "22230511"
+	},
+	"item": [
+		{
+			"name": "KYC event",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"customerId\": \"25c5ef5d-aaef-4229-9792-8fd5d6fe71eb\",\n    \"documentType\": \"CPF\",\n    \"documentNumber\": \"09876543210\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{kyc-url}}/v1/kyc",
+					"host": [
+						"{{kyc-url}}"
+					],
+					"path": [
+						"v1",
+						"kyc"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "KYC",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{kyc-url}}/v1/kyc/81e42ea8-9f11-46ec-977b-4aacf50e7ce5",
+					"host": [
+						"{{kyc-url}}"
+					],
+					"path": [
+						"v1",
+						"kyc",
+						"81e42ea8-9f11-46ec-977b-4aacf50e7ce5"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"requests": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"requests": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "kyc-url",
+			"value": ""
+		}
+	]
+}
