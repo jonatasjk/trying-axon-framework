@@ -6,12 +6,14 @@ import com.jonatask.kyc.domain.event.KycApprovedEvent;
 import com.jonatask.kyc.domain.event.KycCreatedEvent;
 import com.jonatask.kyc.domain.event.KycRejectedEvent;
 import lombok.extern.slf4j.Slf4j;
+import org.axonframework.config.ProcessingGroup;
 import org.axonframework.eventhandling.EventHandler;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Component;
 
 @Slf4j
 @Component
+@ProcessingGroup("com.jonatask.kyc.infrastructure.kafka")
 public class KycEventPublisher {
 
     private static final String KYC_CREATED_TOPIC = "kyc-created";
@@ -29,18 +31,45 @@ public class KycEventPublisher {
     @EventHandler
     public void on(KycCreatedEvent event) throws JsonProcessingException {
         log.info("Publishing KycCreatedEvent to Kafka: {}", event.kycId());
-        kafkaTemplate.send(KYC_CREATED_TOPIC, event.kycId(), objectMapper.writeValueAsString(event));
+        kafkaTemplate.send(KYC_CREATED_TOPIC, event.kycId(), objectMapper.writeValueAsString(event))
+            .whenComplete((result, ex) -> {
+                if (ex != null) {
+                    log.error("Failed to publish KycCreatedEvent to Kafka for kycId {}: {}",
+                        event.kycId(), ex.getMessage());
+                } else {
+                    log.info("Successfully published KycCreatedEvent to Kafka for kycId {}",
+                        event.kycId());
+                }
+            });
     }
 
     @EventHandler
     public void on(KycApprovedEvent event) throws JsonProcessingException {
         log.info("Publishing KycApprovedEvent to Kafka: {}", event.kycId());
-        kafkaTemplate.send(KYC_APPROVED_TOPIC, event.kycId(), objectMapper.writeValueAsString(event));
+        kafkaTemplate.send(KYC_APPROVED_TOPIC, event.kycId(), objectMapper.writeValueAsString(event))
+            .whenComplete((result, ex) -> {
+                if (ex != null) {
+                    log.error("Failed to publish KycApprovedEvent to Kafka for kycId {}: {}",
+                        event.kycId(), ex.getMessage());
+                } else {
+                    log.info("Successfully published KycApprovedEvent to Kafka for kycId {}",
+                        event.kycId());
+                }
+            });
     }
 
     @EventHandler
     public void on(KycRejectedEvent event) throws JsonProcessingException {
         log.info("Publishing KycRejectedEvent to Kafka: {}", event.kycId());
-        kafkaTemplate.send(KYC_REJECTED_TOPIC, event.kycId(), objectMapper.writeValueAsString(event));
+        kafkaTemplate.send(KYC_REJECTED_TOPIC, event.kycId(), objectMapper.writeValueAsString(event))
+            .whenComplete((result, ex) -> {
+                if (ex != null) {
+                    log.error("Failed to publish KycRejectedEvent to Kafka for kycId {}: {}",
+                        event.kycId(), ex.getMessage());
+                } else {
+                    log.info("Successfully published KycRejectedEvent to Kafka for kycId {}",
+                        event.kycId());
+                }
+            });
     }
 }
