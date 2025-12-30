@@ -129,7 +129,7 @@
 		<dependency>
 			<groupId>org.axonframework</groupId>
 			<artifactId>axon-test</artifactId>
-			<version>${axion.springboot.version}</version>
+			<version>${axon.springboot.version}</version>
 			<scope>test</scope>
 		</dependency>
 		<dependency>

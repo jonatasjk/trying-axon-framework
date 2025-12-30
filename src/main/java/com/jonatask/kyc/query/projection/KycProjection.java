@@ -5,43 +5,54 @@ import com.jonatask.kyc.domain.event.KycApprovedEvent;
 import com.jonatask.kyc.domain.event.KycCreatedEvent;
 import com.jonatask.kyc.domain.event.KycRejectedEvent;
 import com.jonatask.kyc.query.repository.KycViewRepository;
+import lombok.extern.slf4j.Slf4j;
+import org.axonframework.config.ProcessingGroup;
 import org.axonframework.eventhandling.EventHandler;
 import org.springframework.stereotype.Component;
 
 @Component
+@ProcessingGroup("com.jonatask.kyc.query.projection")
+@Slf4j
 public class KycProjection {
 
-    private final KycViewRepository repo;
+    private final KycViewRepository repository;
 
-    public KycProjection(KycViewRepository repo) {
-        this.repo = repo;
+    public KycProjection(KycViewRepository repository) {
+        this.repository = repository;
     }
 
     @EventHandler
     public void on(KycCreatedEvent event) {
-        repo.save(new KycView(
-            event.kycId(),
-            event.customerId(),
-            event.documentType(),
-            EKycStatus.PENDING
-        ));
+        try {
+            KycView document = new KycView(
+                event.kycId(),
+                event.customerId(),
+                event.documentType(),
+                EKycStatus.PENDING
+            );
+
+            repository.save(document);
+        } catch (Exception ex) {
+            log.error("Failed to process KycCreatedEvent for kycId {}: {}",
+                event.kycId(), ex.getMessage());
+        }
     }
 
     @EventHandler
     public void on(KycApprovedEvent event) {
-        repo.findById(event.kycId())
+        repository.findById(event.kycId())
             .ifPresent(v -> {
                 v.setStatus(EKycStatus.APPROVED);
-                repo.save(v);
+                repository.save(v);
             });
     }
 
     @EventHandler
     public void on(KycRejectedEvent event) {
-        repo.findById(event.kycId())
+        repository.findById(event.kycId())
             .ifPresent(v -> {
                 v.setStatus(EKycStatus.REJECTED);
-                repo.save(v);
+                repository.save(v);
             });
     }
 }
