@@ -56,14 +56,6 @@ jobs:
       - name: Run tests
         run: mvn clean verify
 
-      - name: Generate test report
-        if: always()
-        uses: dorny/test-reporter@v1
-        with:
-          name: Maven Tests
-          path: target/surefire-reports/*.xml
-          reporter: java-junit
-
       - name: Upload coverage to Codecov
         if: success()
         uses: codecov/codecov-action@v3
