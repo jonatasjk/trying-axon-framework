@@ -18,8 +18,9 @@
 		<java.version>23</java.version>
 		<spring-cloud.version>2025.0.1</spring-cloud.version>
 		<jackson.version>2.18.2</jackson.version>
-		<axion.springboot.version>4.12.2</axion.springboot.version>
-		<axion.kafka.version>4.12.0</axion.kafka.version>
+		<axon.springboot.version>4.12.2</axon.springboot.version>
+		<axon.kafka.version>4.12.0</axon.kafka.version>
+		<axon.mongo.version>4.12.0</axon.mongo.version>
 		<mongodb.version>5.5.1</mongodb.version>
 		<maven.surefire.plugin.version>3.5.4</maven.surefire.plugin.version>
 		<maven.failsafe.plugin.version>3.5.4</maven.failsafe.plugin.version>
@@ -54,8 +55,14 @@
 		<dependency>
 			<groupId>org.axonframework</groupId>
 			<artifactId>axon-spring-boot-starter</artifactId>
-			<version>${axion.springboot.version}</version>
+			<version>${axon.springboot.version}</version>
 		</dependency>
+		<dependency>
+			<groupId>org.axonframework.extensions.mongo</groupId>
+			<artifactId>axon-mongo</artifactId>
+			<version>${axon.mongo.version}</version>
+		</dependency>
+
 
 		<!-- MongoDB -->
 		<dependency>
@@ -79,7 +86,7 @@
 		<dependency>
 			<groupId>org.axonframework.extensions.kafka</groupId>
 			<artifactId>axon-kafka</artifactId>
-			<version>${axion.kafka.version}</version>
+			<version>${axon.kafka.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.kafka</groupId>
@@ -88,7 +95,7 @@
 		<dependency>
 			<groupId>org.axonframework.extensions.kafka</groupId>
 			<artifactId>axon-kafka-spring-boot-starter</artifactId>
-			<version>${axion.kafka.version}</version>
+			<version>${axon.kafka.version}</version>
 		</dependency>
 
 		<!-- Feign -->
